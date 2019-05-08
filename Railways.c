@@ -97,6 +97,19 @@ int cancel(int reg)
 	preptr=NULL;
 	if(start==NULL)
 	return -1;
+        if(start->reg_no==reg && start->next!=NULL)
+	       {
+		start=start->next;
+		preptr=start;
+		free(ptr);
+		new=deq();
+		while(preptr->next!=NULL)
+			preptr=preptr->next;
+		preptr->next=new;
+		num--;
+		return 1;
+		}	
+		
 	if(ptr->next==NULL && ptr->reg_no==reg)
 		{
 		start=NULL;
